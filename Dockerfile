@@ -1,8 +1,24 @@
 FROM alpine
+
+# Install packages
+RUN apk --no-cache add curl
+
+# Copy scripts
+COPY update-bt-tracker.sh /
+COPY crontab /var/spool/cron/crontabs/root
+
+# Give execution rights on the cron job
+RUN chmod 0644 /var/spool/cron/crontabs/root
+
+# Entrypoint
+COPY entrypoint.sh /
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
+
 	
 	ARG ARIANG_VERSION=1.0.0
 	
-	ENV RPC_SECRET=secret
+	#ENV RPC_SECRET=secret 是否启用加密
+	ENV RPC_SECRET=""
 	ENV DOMAIN=0.0.0.0:6880
 	ENV PUID=0
 	ENV PGID=0
