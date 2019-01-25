@@ -1,2 +1,4 @@
-0 4 * * * sh /update-bt-tracker.sh
+#0 4 * * * sh /update-bt-tracker.sh
+*/30 * * * * /aria2/conf/trackers-list-aria2.sh
+ */5 * * * * su-exec $userid:$groupid aria2c --conf-path="/aria2/conf/aria2.conf"
 # end line
