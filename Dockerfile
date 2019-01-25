@@ -20,7 +20,7 @@ ENV PUID=0
 ENV PGID=0
 
 RUN apk update \
-    && apk add --no-cache --update caddy curl aria2 su-exec
+    && apk add --no-cache --update caddy curl sed aria2 su-exec
 
 # AriaNG
 WORKDIR /usr/local/www/aria2
